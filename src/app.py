@@ -23,7 +23,12 @@ def add_new_todo():
 @app.route('/todos/<int:position>', methods=['DELETE'])
 def delete_todo(position):
     print("This is the position to delete: ",position)
-    return 'something'
+    if position<len(todos):
+        todos.pop(position)
+    else:
+        return 'error, that task does not exists'
+    json_text= jsonify(todos)
+    return 'OK, task deleted'
 
 # These two lines should always be at the end of your app.py file.
 if __name__ == '__main__':
